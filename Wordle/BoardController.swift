@@ -51,6 +51,11 @@ class BoardController: NSObject,
   func resetBoardWithCurrentSettings() {
     // START YOUR CODE HERE
     // ...
+    // numTimesGuessed should be set to 0
+    numTimesGuessed = 0
+      
+    // collectionView is reloaded
+    collectionView.reloadData()
     // END YOUR CODE HERE
   }
   
@@ -63,6 +68,10 @@ class BoardController: NSObject,
   private func applyNumLettersSettings(with settings: [String: Any]) {
     // START YOUR CODE HERE
     // ...
+      if let numLetters = settings[kNumLettersKey] as? Int {
+        // Assign numItemsPerRow to be equal to numLetters
+          numItemsPerRow = numLetters
+      }
     // END YOUR CODE HERE
   }
   
@@ -75,6 +84,10 @@ class BoardController: NSObject,
   private func applyNumGuessesSettings(with settings: [String: Any]) {
     // START YOUR CODE HERE
     // ...
+      if let numGuesses = settings[kNumGuessesKey] as? Int {
+        // Assign numGuesses to be equal to numRows
+          numRows = numGuesses
+      }
     // END YOUR CODE HERE
   }
   
@@ -88,6 +101,11 @@ class BoardController: NSObject,
   private func applyThemeSettings(with settings: [String: Any]) {
     // START YOUR CODE HERE
     // ...
+      if let rawTheme = settings[kWordThemeKey] as? String, // same as we've been doing before
+      let theme = WordTheme(rawValue: rawTheme) {
+        goalWord = WordGenerator.generateGoalWord(with: theme)
+      }
+
     // END YOUR CODE HERE
   }
   
@@ -98,6 +116,10 @@ class BoardController: NSObject,
   private func applyIsAlienWordleSettings(with settings: [String: Any]) {
     // START YOUR CODE HERE
     // ...
+      if let isAlienWordleWord = settings[kIsAlienWordleKey] as? Bool {
+        // Assign numItemsPerRow to be equal to numLetters
+          isAlienWordle = isAlienWordleWord
+      }
     // START YOUR CODE HERE
   }
 }

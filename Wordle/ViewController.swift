@@ -47,11 +47,22 @@ class ViewController: UIViewController,
     // in the function that you fire when the button is tapped
     // START YOUR CODE HERE
     // ...
+    let leftBarButtonItem = UIBarButtonItem(title: "Reset",
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(didTapResetButton))
+    leftBarButtonItem.tintColor = .white
+    navigationItem.leftBarButtonItem = leftBarButtonItem
     // END YOUR CODE HERE
   }
   
   @objc private func didTapSettingsButton() {
     performSegue(withIdentifier: segueIdentifier, sender: nil)
+  }
+    
+  @objc private func didTapResetButton() {
+    // Invoke the resetBoardWithCurrentSettings function in the BoardController
+    boardController.resetBoardWithCurrentSettings()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
